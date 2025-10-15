@@ -1,9 +1,7 @@
 package tppe.campeonato;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -17,9 +15,6 @@ import org.junit.runners.Parameterized.Parameters;
 public class TestGetPoints {
 
   Team t;
-  private int wins = 0;
-  private int draws = 0;
-  private int losses = 0;
   private int expectedPoints = 0;
   private Object[] resultadoPartidas;
 

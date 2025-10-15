@@ -26,15 +26,15 @@ public class Team {
   }
   
   public void setWins(int wins) {
-    this.wins = wins;
+    this.wins += wins;
   }
 
   public void setDraws(int draws) {
-    this.draws = draws;
+    this.draws += draws;
   }
 
   public void setLosses(int losses) {
-    this.losses = losses;
+    this.losses += losses;
   }
 
   @Override
