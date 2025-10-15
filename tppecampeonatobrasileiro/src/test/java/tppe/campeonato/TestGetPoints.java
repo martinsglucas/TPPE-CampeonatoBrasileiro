@@ -9,8 +9,11 @@ import java.util.Collection;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+@RunWith(Parameterized.class)
 public class TestGetPoints {
 
   Team t;
@@ -38,12 +41,23 @@ public class TestGetPoints {
     Object[] round4 = new Object[] {1, 1}; // (wins, draws)
 
     Object[][] tuplas = new Object[][] {
-      
-    }
+      {new Object[] {round1, round2}, 16},
+      {new Object[] {round3, round4}, 6},
+      {new Object[] {round1, round2, round3}, 18},
+      {new Object[] {round1, round2, round3, round4}, 22},     
+    };
+
+    return Arrays.asList(tuplas);
   } 
 
   @Test
-  public void test() {
+  public void testePontosVariasRodadas() {
+    for(Object o : resultadoPartidas){
+      Object[] dados = (Object[]) o;
+      t.setWins((int) dados[0]);
+      t.setDraws((int)dados[1]);
+
+    }
     assertEquals(expectedPoints, t.getPoints());
   }
 
