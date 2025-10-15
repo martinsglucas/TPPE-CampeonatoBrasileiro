@@ -9,10 +9,12 @@ public class Competition {
 
     private ArrayList<Team> teams;
     private ArrayList<Match> allMatches;
+    private int numRounds;
 
     public Competition(ArrayList<Team> teams) {
       this.teams = teams;
       this.allMatches = new ArrayList<>();
+      this.numRounds = (teams.size() - 1) * 2;
     }
 
     public ArrayList<Match> createAllMatches(){
@@ -28,33 +30,34 @@ public class Competition {
 
     }
     
-    public static Round[] scheduleMatches(ArrayList<Match> allMatches, int totalRounds){
+    public ArrayList<Round> scheduleRounds(){
 
-        Round[] rounds = new Round[totalRounds];
-        for (int i = 0; i < totalRounds; i++) {
-            rounds[i] = new Round();
+        ArrayList<Round> rounds = new ArrayList<>(numRounds);
+        for (int i = 0; i < numRounds; i++) {
+            rounds.add(new Round(i));
         }
 
         ArrayList<Match> remainingMatches = new ArrayList<>(allMatches);
 
-        for (int i = 0; i < totalRounds; i++) {
-            Round round = rounds[i];
+        for (Round round : rounds) {
             Set<Team> usedTeams = new HashSet<>();
             
             Iterator<Match> it = remainingMatches.iterator();
-                while (it.hasNext()) {
-                    Match match = it.next();
-                    Team home = match.getHomeTeam();
-                    Team away = match.getAwayTeam();
 
-                    if (!usedTeams.contains(home) && !usedTeams.contains(away)) {
-                        round.addMatch(match);
-                        usedTeams.add(home);
-                        usedTeams.add(away);
-                        it.remove(); 
-                    }
+            while (it.hasNext()) {
+                Match match = it.next();
+                Team home = match.getHomeTeam();
+                Team away = match.getAwayTeam();
+
+                if (!usedTeams.contains(home) && !usedTeams.contains(away)) {
+                    round.addMatch(match);
+                    usedTeams.add(home);
+                    usedTeams.add(away);
+                    it.remove(); 
                 }
-            }        
+            }
+        }
+
         return rounds;
     }
     

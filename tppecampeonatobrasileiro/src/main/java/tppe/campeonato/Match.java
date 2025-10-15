@@ -17,6 +17,20 @@ public class Match {
     return this.homeTeam;
   }
 
-  
-  
+  @Override 
+  public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null || getClass() != obj.getClass()) return false;
+    Match other = (Match) obj;
+    return this.getHomeTeam().equals(other.getHomeTeam()) && this.getAwayTeam().equals(other.getAwayTeam());
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append(homeTeam.toString()).append(" x ").append(awayTeam.toString());
+
+    return sb.toString();
+  }
+
 }
