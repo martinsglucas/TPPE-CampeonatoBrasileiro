@@ -1,5 +1,6 @@
 package tppe.campeonato;
 
+import java.util.Comparator;
 import java.util.ArrayList;
 
 public class Round {
@@ -18,6 +19,37 @@ public class Round {
 
     public ArrayList<Match> getMatches() {
         return matches;
+    }
+
+    public ArrayList<Team> getTeams() {
+        ArrayList<Team> teams = new ArrayList<>();
+
+        for (Match match : getMatches()) {
+            teams.add(match.getHomeTeam());
+            teams.add(match.getAwayTeam());
+        }
+
+        return teams;
+    }
+
+    public ArrayList<Team> processRoundResult() {
+        ArrayList<Team> teams = getTeams();
+        teams.sort((t1, t2) -> {
+            int pointsCompare = Integer.compare(t2.getPoints(), t1.getPoints());
+            if (pointsCompare != 0) return pointsCompare;
+
+            int winsCompare = Integer.compare(t2.getWins(), t1.getWins());
+            if (winsCompare != 0) return winsCompare;
+
+            int goalsDifference = Integer.compare(t2.getGoalDifference(), t1.getGoalDifference());
+            if (goalsDifference != 0) return goalsDifference;
+            // confronto direto
+
+            
+            return Integer.compare(t2.getGoalsScored(), t1.getGoalsScored());
+        });
+
+        return teams;
     }
 
     @Override

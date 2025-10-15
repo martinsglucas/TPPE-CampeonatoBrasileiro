@@ -10,11 +10,16 @@ public class Competition {
     private ArrayList<Team> teams;
     private ArrayList<Match> allMatches;
     private int numRounds;
+    private ArrayList<Round> rounds;
 
     public Competition(ArrayList<Team> teams) {
       this.teams = teams;
       this.allMatches = new ArrayList<>();
       this.numRounds = (teams.size() - 1) * 2;
+    }
+
+    public Round getRound(int roundNumber) {
+        return rounds.get(roundNumber);
     }
 
     public ArrayList<Match> createAllMatches(){
@@ -58,7 +63,9 @@ public class Competition {
             }
         }
 
+        this.rounds = rounds;
+
         return rounds;
     }
-    
+
 }
