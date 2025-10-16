@@ -4,8 +4,8 @@ public class Match {
 
   private Team homeTeam;
   private Team awayTeam;
-  private int GolsHome;
-  private int GolsAway;
+  private int GolsHomeTeam;
+  private int GolsAwayTeam;
 
   public Match(Team awayTeam, Team homeTeam){
       this.awayTeam = awayTeam;
@@ -15,13 +15,13 @@ public class Match {
   public Team getAwayTeam() {return this.awayTeam;}
   public Team getHomeTeam() {return this.homeTeam;}
 
-  public int getGolsHome() {return GolsHome;}
-  public int getGolsAway() {return GolsAway;}
+  public int getGolsHome() {return GolsHomeTeam;}
+  public int getGolsAway() {return GolsAwayTeam;}
 
 
   public void playGame(int GolsHomeTeam, int GolsAwayTeam){
-    this.GolsHome = GolsHomeTeam;
-    this.GolsAway = GolsAwayTeam;
+    this.GolsHomeTeam = GolsHomeTeam;
+    this.GolsAwayTeam = GolsAwayTeam;
 
     homeTeam.registerResults(GolsHomeTeam, GolsAwayTeam);
     awayTeam.registerResults(GolsAwayTeam, GolsHomeTeam);
