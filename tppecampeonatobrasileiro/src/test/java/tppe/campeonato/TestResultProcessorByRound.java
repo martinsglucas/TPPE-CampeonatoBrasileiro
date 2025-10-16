@@ -11,6 +11,7 @@ import java.util.Arrays;
 public class TestResultProcessorByRound {
 
   Round r;
+  ArrayList<Team> teams;
 
   @Before
   public void setup() {
@@ -20,6 +21,13 @@ public class TestResultProcessorByRound {
     Team palmeiras = new Team("Palmeiras");
     Team cruzeiro = new Team("Cruzeiro");
     Team santos = new Team("Santos");
+
+    teams = new ArrayList<>(Arrays.asList(
+      flamengo,
+      palmeiras,
+      cruzeiro,
+      santos
+    ));
 
     Match flaVsPal = new Match(flamengo, palmeiras);
     Match cruVsSan = new Match(cruzeiro, santos);
@@ -34,7 +42,7 @@ public class TestResultProcessorByRound {
 
   @Test
   public void test() {
-    ArrayList<Team> result = r.processRoundResult();
+    ArrayList<Team> result = r.processRoundResult(teams);
     assertTrue("Flamengo".equals(result.getFirst().getName()));
   }
 

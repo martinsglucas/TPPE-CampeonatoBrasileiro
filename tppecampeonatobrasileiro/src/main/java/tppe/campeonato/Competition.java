@@ -68,4 +68,23 @@ public class Competition {
         return rounds;
     }
 
+    public Match getMatch(String t1Name, String t2Name) {
+        for (Match match : allMatches) {
+            if (match.getHomeTeam().getName().equals(t1Name) && match.getAwayTeam().getName().equals(t2Name)) {
+                return match;
+            }
+        }
+
+        return null;
+        
+    }
+
+    public ArrayList<Team> getClassification() {
+        for (Round round : rounds) {
+            teams = round.processRoundResult(teams);
+        }
+
+        return teams;
+    }
+    
 }
