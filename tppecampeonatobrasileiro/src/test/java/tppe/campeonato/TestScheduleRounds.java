@@ -1,11 +1,9 @@
 package tppe.campeonato;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -42,7 +40,6 @@ public class TestScheduleRounds {
     ));
 
     c = new Competition(teams);
-    c.createAllMatches();
   }
 
   @Test

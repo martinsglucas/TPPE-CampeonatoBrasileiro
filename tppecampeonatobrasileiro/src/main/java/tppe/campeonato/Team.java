@@ -23,6 +23,10 @@ public class Team {
     this.points = 0;
   }
 
+  public String getName() {
+    return teamName;
+  }
+
   public int getPoints() {
     this.points = (this.wins * 3) + this.draws;
     return points;
@@ -55,7 +59,49 @@ public class Team {
     }
   }
 
+  public int getGoalDifference() {
+    return goalsScored - goalsConceded;
+  }
+
+  public int setGoalsScored(int goals){
+    return this.goalsScored += goals;
+  }
+  public int getGoalsScored(){
+    return this.goalsScored ;
+  }
+
+  public int setGoalsConceded(int goals){
+    return this.goalsConceded += goals;
+  }
+
+  public int getGoalsConceded(){
+    return this.goalsConceded ;
+  }
+
+  public int setYellowCards(int cards){
+    return this.yellowCards += cards ;
+  }
+
+  public int getYellowCards( ){
+    return this.yellowCards ;
+  }
+
+  public int setRedCards(int cards){
+    return this.redCards += cards ;
+  }
+
+  public int getRedCards(){
+    return this.redCards ;
+  }
+
   @Override
-  public String toString() {return teamName;}
+  public String toString() {
+    // return teamName;
+    StringBuilder sb = new StringBuilder();
+
+    sb.append(teamName).append(" - Pontos = ").append(getPoints()).append(" - Vitorias: ").append(getWins());
+
+    return sb.toString();
+  }
 
 }
