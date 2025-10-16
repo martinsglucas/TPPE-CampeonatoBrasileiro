@@ -43,8 +43,8 @@ public class TestScheduleRounds {
   }
 
   @Test
-  public void TesteJogosNaoSeRepetem() {
-    ArrayList<Round> rounds = c.scheduleRounds();
+  public void test() {
+    ArrayList<Round> rounds = c.getRounds();
     boolean notEqualsMatches = true;
 
     assertEquals((teams.size() - 1) * 2, rounds.size());

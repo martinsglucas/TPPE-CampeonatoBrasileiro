@@ -72,6 +72,10 @@ public class Competition {
         return rounds;
     }
 
+    public ArrayList<Round> getRounds() {
+        return rounds;
+    }
+
     public Match getMatch(String t1Name, String t2Name) {
         for (Match match : allMatches) {
             if (match.getHomeTeam().getName().equals(t1Name) && match.getAwayTeam().getName().equals(t2Name)) {
@@ -104,8 +108,18 @@ public class Competition {
             return Integer.compare(m.getAwayGoals(), m.getHomeGoals());
         });
         
-
         return teams;
     }
+ 
     
+    @Override
+    public String toString() {
+        
+        StringBuilder sb = new StringBuilder();
+        for (Team team: teams) {
+            sb.append(team);
+        }
+        return sb.toString();
+
+    }
 }
