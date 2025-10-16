@@ -42,7 +42,6 @@ public class TestScheduleRounds {
     ));
 
     c = new Competition(teams);
-    c.createAllMatches();
   }
 
   @Test

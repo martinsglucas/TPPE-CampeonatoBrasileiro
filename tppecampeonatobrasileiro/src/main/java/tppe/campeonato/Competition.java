@@ -14,8 +14,9 @@ public class Competition {
 
     public Competition(ArrayList<Team> teams) {
       this.teams = teams;
-      this.allMatches = new ArrayList<>();
       this.numRounds = (teams.size() - 1) * 2;
+      this.allMatches = createAllMatches();
+      this.rounds = scheduleRounds();
     }
 
     public Round getRound(int roundNumber) {
@@ -23,15 +24,18 @@ public class Competition {
     }
 
     public ArrayList<Match> createAllMatches(){
+
+        ArrayList<Match> matches = new ArrayList<>();
+
         for (int i = 0; i < teams.size(); i++) {
             for (int j = 0; j < teams.size(); j++) {
                 if (i != j) {
-                    allMatches.add(new Match(teams.get(i), teams.get(j)));
+                    matches.add(new Match(teams.get(i), teams.get(j)));
                 }
             }
         }
 
-      return allMatches;
+      return matches;
 
     }
     
@@ -79,10 +83,27 @@ public class Competition {
         
     }
 
+    public Match getMatch(Team t1, Team t2) {
+        for (Match match : allMatches) {
+            if (match.getHomeTeam().equals(t1) && match.getAwayTeam().equals(t2)) {
+                return match;
+            }
+        }
+
+        return null;
+        
+    }
+
     public ArrayList<Team> getClassification() {
         for (Round round : rounds) {
             teams = round.processRoundResult(teams);
         }
+
+        teams.sort((t1, t2) -> {
+            Match m = getMatch(t1, t2);
+            return Integer.compare(m.getAwayGoals(), m.getHomeGoals());
+        });
+        
 
         return teams;
     }
