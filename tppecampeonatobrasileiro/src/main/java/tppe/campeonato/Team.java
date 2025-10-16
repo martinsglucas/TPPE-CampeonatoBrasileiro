@@ -96,10 +96,17 @@ public class Team {
 
   @Override
   public String toString() {
-    // return teamName;
     StringBuilder sb = new StringBuilder();
-
-    sb.append(teamName).append(" - Pontos = ").append(getPoints()).append(" - Vitorias: ").append(getWins());
+    sb.append("- ")
+    .append(String.format("%-17s", teamName)).append(" : ")
+    .append("P = ").append(String.format("%02d", getPoints())).append(" | ")
+    .append("V = ").append(String.format("%02d", getWins())).append(" | ")
+    .append("E = ").append(String.format("%02d", getDraws())).append(" | ")
+    .append("D = ").append(String.format("%02d", getLosses())).append(" | ")
+    .append("GM = ").append(String.format("%02d", getGoalsScored())).append(" | ")
+    .append("GC = ").append(String.format("%02d", getGoalsConceded())).append(" | ")
+    .append("SG = ").append(String.format("%02d", getGoalDifference())).append(" | ")
+    .append("\n");
 
     return sb.toString();
   }
