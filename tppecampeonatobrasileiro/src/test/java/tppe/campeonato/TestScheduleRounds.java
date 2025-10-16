@@ -1,11 +1,9 @@
 package tppe.campeonato;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -45,7 +43,7 @@ public class TestScheduleRounds {
   }
 
   @Test
-  public void test() {
+  public void TesteJogosNaoSeRepetem() {
     ArrayList<Round> rounds = c.scheduleRounds();
     boolean notEqualsMatches = true;
 

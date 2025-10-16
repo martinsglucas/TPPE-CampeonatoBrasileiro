@@ -1,6 +1,5 @@
 package tppe.campeonato;
 
-import java.util.Comparator;
 import java.util.ArrayList;
 
 public class Round {
@@ -78,9 +77,6 @@ public class Round {
         }
 
         return sb.toString();
-        
     }
-
-    
 
 }

@@ -67,16 +67,9 @@ public class Match {
     awayTeam.setGoalsConceded(homeGoals);
     awayTeam.setGoalsScored(awayGoals);
     
-    if (homeGoals > awayGoals) {
-        homeTeam.setWins(1);  
-        awayTeam.setLosses(1);
-    } else if (awayGoals > homeGoals) {
-        awayTeam.setWins(1);  
-        homeTeam.setLosses(1);
-    } else {
-      homeTeam.setDraws(1);
-      awayTeam.setDraws(1);
-    }
+    // Results
+    homeTeam.registerResults(homeGoals, awayGoals);
+    awayTeam.registerResults(awayGoals, homeGoals);
   }
 
   @Override

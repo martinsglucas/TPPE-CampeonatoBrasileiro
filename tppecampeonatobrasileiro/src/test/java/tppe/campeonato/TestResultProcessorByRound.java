@@ -1,6 +1,5 @@
 package tppe.campeonato;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,10 +40,9 @@ public class TestResultProcessorByRound {
   }
 
   @Test
-  public void test() {
+  public void TesteResultadoProcessoPorRound() {
     ArrayList<Team> result = r.processRoundResult(teams);
     assertTrue("Flamengo".equals(result.getFirst().getName()));
   }
-
 
 }
