@@ -54,12 +54,19 @@ public class Match {
     return this.awayRedCards;
   }
 
-  public void setResult(int homeGoals, int awayGoals, int homeYellowCards, int awayYellowCards, int homeRedCards, int awayRedCards) {
-    // Cards
+  public Match setYellowCards(int homeYellowCards, int awayYellowCards) {
     homeTeam.setYellowCards(homeYellowCards);
-    homeTeam.setRedCards(homeRedCards);
     awayTeam.setYellowCards(awayYellowCards);
+    return this;
+  }
+
+  public Match setRedCards(int homeRedCards, int awayRedCards) {
+    homeTeam.setRedCards(homeRedCards);
     awayTeam.setRedCards(awayRedCards);
+    return this;
+  }
+
+  public Match setResult(int homeGoals, int awayGoals) {
 
     // Goals
     homeTeam.setGoalsConceded(awayGoals);
@@ -70,6 +77,8 @@ public class Match {
     // Results
     homeTeam.registerResults(homeGoals, awayGoals);
     awayTeam.registerResults(awayGoals, homeGoals);
+
+    return this;
   }
 
   @Override
@@ -85,7 +94,7 @@ public class Match {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append(homeTeam.toString()).append(" x ").append(awayTeam.toString());
+    sb.append(homeTeam.getName()).append(" x ").append(awayTeam.getName());
 
     return sb.toString();
   }

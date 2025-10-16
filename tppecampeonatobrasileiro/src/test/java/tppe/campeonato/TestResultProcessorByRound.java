@@ -34,8 +34,13 @@ public class TestResultProcessorByRound {
     r.addMatch(flaVsPal);
     r.addMatch(cruVsSan);
 
-    flaVsPal.setResult(3, 1, 1, 2, 0, 0);
-    cruVsSan.setResult(1, 0, 2, 2, 0, 1);
+    flaVsPal
+      .setResult(3, 1)
+      .setYellowCards(1, 2);
+    cruVsSan
+      .setResult(1, 0)
+      .setYellowCards(2, 2)
+      .setRedCards(0, 1);
 
   }
 
