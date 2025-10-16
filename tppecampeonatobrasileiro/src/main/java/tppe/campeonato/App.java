@@ -8,63 +8,67 @@ public class App
     public static void main( String[] args )
     {
 
-      ArrayList<Team>  teams = new ArrayList<Team>(Arrays.asList(
-        new Team("Palmeiras"),
-        new Team("Flamengo"),
-        new Team("Cruzeiro"),
-        new Team("Mirassol"),
-        new Team("Botafogo"),
-        new Team("Bahia"),
-        new Team("Fluminense"),
-        new Team("Sao Paulo"),
-        new Team("Bragantino"),
-        new Team("Ceara"),
-        new Team("Vasco"),
-        new Team("Corinthians"),
-        new Team("Gremio"),
-        new Team("Atletico Mineiro"),
-        new Team("Internacional"),
-        new Team("Santos"),
-        new Team("Vitoria"),
-        new Team("Fortaleza"),
-        new Team("Juventude"),
-        new Team("Sport Recife")
-
-        ));
+    ArrayList<Team>  teams = new ArrayList<Team>(Arrays.asList(
+      new Team("Palmeiras"),
+      new Team("Flamengo"),
+      new Team("Cruzeiro"),
+      new Team("Mirassol")
+    ));
 
     Competition brasileirao = new Competition(teams);
-    brasileirao.createAllMatches();
-    ArrayList<Round> rounds = brasileirao.scheduleRounds();
 
-    brasileirao.getMatch("Flamengo", "Botafogo").setResult(3, 0, 0, 0, 0, 0);
-
-    System.out.println(brasileirao.getClassification().getFirst());
-
-    // System.out.println(rounds);
-    // System.out.println(flaVsBot);
-
-    // Round r = new Round(0);
-
-    // Team flamengo = new Team("Flamengo");
-    // Team palmeiras = new Team("Palmeiras");
-    // Team cruzeiro = new Team("Cruzeiro");
-    // Team santos = new Team("Santos");
-
-    // Match flaVsPal = new Match(flamengo, palmeiras);
-    // Match cruVsSan = new Match(cruzeiro, santos);
-
-    // r.addMatch(flaVsPal);
-    // r.addMatch(cruVsSan);
-
-    // flaVsPal.setResult(3, 1, 1, 2, 0, 0);
-    // cruVsSan.setResult(1, 0, 2, 2, 0, 1);
-    // ArrayList<Team> result = r.processRoundResult();
-
-
-    // System.out.print(result.getFirst().getName());
+    // Rodada 0
+    brasileirao
+      .getMatch("Palmeiras", "Flamengo")
+      .setResult(0, 2)
+      .setYellowCards(1, 1);
+    brasileirao
+      .getMatch("Cruzeiro", "Mirassol")
+      .setResult(2, 1);
     
+    // Rodada 1
+    brasileirao
+      .getMatch("Palmeiras", "Cruzeiro")
+      .setResult(2, 3);
+    brasileirao
+      .getMatch("Flamengo", "Mirassol")
+      .setResult(1, 1);
+    
+    // Rodada 2
+    brasileirao
+      .getMatch("Palmeiras", "Mirassol")
+      .setResult(1, 1);
+    brasileirao
+      .getMatch("Flamengo", "Cruzeiro")
+      .setResult(1, 1);
+    
+    // Rodada 3
+    brasileirao
+      .getMatch("Flamengo", "Palmeiras")
+      .setResult(2, 2);
+    brasileirao
+      .getMatch("Mirassol", "Cruzeiro")
+      .setResult(2, 1);
+    
+    // Rodada 4
+    brasileirao
+      .getMatch("Cruzeiro", "Palmeiras")
+      .setResult(1, 2);
+    brasileirao
+      .getMatch("Mirassol", "Flamengo")
+      .setResult(1, 1);
+    
+    // Rodada 5
+    brasileirao
+      .getMatch("Cruzeiro", "Flamengo")
+      .setResult(1, 1);
+    brasileirao
+      .getMatch("Mirassol", "Palmeiras")
+      .setResult(0, 0);
 
+    brasileirao.getClassification();
 
+    System.out.println(brasileirao);
 
 
     }
