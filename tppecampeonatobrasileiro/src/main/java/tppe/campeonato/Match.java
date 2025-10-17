@@ -55,26 +55,30 @@ public class Match {
   }
 
   public Match setYellowCards(int homeYellowCards, int awayYellowCards) {
+    this.homeYellowCards = homeYellowCards;
+    this.awayYellowCards = awayYellowCards;
+
     homeTeam.setYellowCards(homeYellowCards);
     awayTeam.setYellowCards(awayYellowCards);
     return this;
   }
 
   public Match setRedCards(int homeRedCards, int awayRedCards) {
+    this.homeRedCards = homeRedCards;
+    this.awayRedCards = awayRedCards;
+
     homeTeam.setRedCards(homeRedCards);
     awayTeam.setRedCards(awayRedCards);
     return this;
   }
 
   public Match setResult(int homeGoals, int awayGoals) {
+    //placar do jogo salvo na Match
+    this.homeGoals = homeGoals;
+    this.awayGoals = awayGoals;
 
-    // Goals
-    homeTeam.setGoalsConceded(awayGoals);
-    homeTeam.setGoalsScored(homeGoals);
-    awayTeam.setGoalsConceded(homeGoals);
-    awayTeam.setGoalsScored(awayGoals);
     
-    // Results
+    // Results -> Já salva o placar no time
     homeTeam.registerResults(homeGoals, awayGoals);
     awayTeam.registerResults(awayGoals, homeGoals);
 
