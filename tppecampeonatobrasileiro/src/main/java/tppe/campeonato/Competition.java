@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Iterator;
+import java.util.Collections;
 
 public class Competition {
 
@@ -47,6 +48,7 @@ public class Competition {
         }
 
         ArrayList<Match> remainingMatches = new ArrayList<>(allMatches);
+        Collections.shuffle(remainingMatches);
 
         for (Round round : rounds) {
             Set<Team> usedTeams = new HashSet<>();
@@ -104,11 +106,58 @@ public class Competition {
         }
 
         teams.sort((t1, t2) -> {
-            Match m = getMatch(t1, t2);
-            return Integer.compare(m.getAwayGoals(), m.getHomeGoals());
+            // Primeiro ordena por pontos
+            int c = Integer.compare(t2.getPoints(), t1.getPoints());
+            if (c != 0) return c;
+
+            // Segundo, ordena por voitórias
+            c = Integer.compare(t2.getWins(), t1.getWins());
+            if (c != 0) return c;
+
+            // Terceiro, ordena por saldo de gols
+            c = Integer.compare(t2.getGoalDifference(), t1.getGoalDifference());
+            if (c != 0) return c;
+
+            // Quarto, ordena por gols marcados
+            c = Integer.compare(t2.getGoalsScored(), t1.getGoalsScored());
+            if (c != 0) return c;
+
+            // Quinto, ordena por confronto direto entre dois times
+            int h2h = compareHeadToHead(t1, t2);
+            if (h2h != 0) return h2h;
+
+            // Sexto, ordena por menos cartões vermelhos
+            c = Integer.compare(t1.getRedCards(), t2.getRedCards());
+            if (c != 0) return c;
+
+            // Sétimo, ordena por menos cartões amarelos
+            c = Integer.compare(t1.getYellowCards(), t2.getYellowCards());
+            if (c != 0) return c;
+
+            // Oitavo, ordena por nome (ordem alfabética)
+            return t1.getName().compareToIgnoreCase(t2.getName());
         });
         
         return teams;
+    }
+
+    private int compareHeadToHead(Team t1, Team t2) {
+        Match p1 = getMatch(t1, t2);
+        Match p2 = getMatch(t2, t1);
+
+        int t1Goals = 0;
+        int t2Goals = 0;
+
+        if (p1 != null){
+            t1Goals += p1.getHomeGoals();
+            t2Goals += p1.getAwayGoals();
+        }
+        if (p2 != null){
+            t1Goals += p2.getAwayGoals();
+            t2Goals += p2.getHomeGoals();
+        }
+
+        return Integer.compare(t2Goals, t1Goals);
     }
  
     
