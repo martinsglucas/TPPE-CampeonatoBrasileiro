@@ -106,6 +106,8 @@ public class Team {
     .append("GM = ").append(String.format("%02d", getGoalsScored())).append(" | ")
     .append("GC = ").append(String.format("%02d", getGoalsConceded())).append(" | ")
     .append("SG = ").append(String.format("%02d", getGoalDifference())).append(" | ")
+    .append("RC = ").append(String.format("%02d", getRedCards())).append(" | ")
+    .append("YC = ").append(String.format("%02d", getYellowCards())).append(" | ")
     .append("\n");
 
     return sb.toString();
