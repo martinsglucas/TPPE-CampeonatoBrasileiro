@@ -160,6 +160,19 @@ public class Competition {
         return Integer.compare(t2Goals, t1Goals);
     }
  
+    public ArrayList<Team> getLibertadores(){
+        return new ArrayList<>(getClassification().subList(0,5));
+    } 
+    
+    
+    public ArrayList<Team> getSulAmericana() {
+        return new ArrayList<>(getClassification().subList(6,11));
+    }
+
+    public ArrayList<Team> getRebaixados() {
+        return new ArrayList<>(getClassification().subList(15,19));
+    }
+    
     
     @Override
     public String toString() {
@@ -171,4 +184,5 @@ public class Competition {
         return sb.toString();
 
     }
+
 }
