@@ -59,7 +59,7 @@ public class TestTieBreakerByVictory {
     }
 
     @Test
-    public void test() {
+    public void TesteTieBreakerByVictory() {
         Team actualFirst = copaBrasil.getClassification().get(0);
         System.out.println(actualFirst);
         assertEquals(firstTeam.getName(), actualFirst.getName());

@@ -43,7 +43,7 @@ public class TestScheduleRounds {
   }
 
   @Test
-  public void test() {
+  public void TesteScheduleRounds() {
     ArrayList<Round> rounds = c.getRounds();
     boolean notEqualsMatches = true;
 

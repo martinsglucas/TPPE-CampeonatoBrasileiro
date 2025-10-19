@@ -22,7 +22,11 @@ public class TestTieBreakerByDifferenceOfGoals {
     private Competition copaBrasil;
     private int goalsScoredTeam1;
     private int goalsScoredTeam2;
+
+    
+    @SuppressWarnings("unused")
     private int goalsConcededTeam1;
+    @SuppressWarnings("unused")
     private int goalsConcededTeam2;
 
 
@@ -61,7 +65,7 @@ public class TestTieBreakerByDifferenceOfGoals {
     }
 
     @Test
-    public void test() {
+    public void TesteTieBreakerByDifferenceOfGoals() {
         Team actualFirst = copaBrasil.getClassification().get(0);
         System.out.println(copaBrasil);
         assertEquals(firstTeam.getName(), actualFirst.getName());
