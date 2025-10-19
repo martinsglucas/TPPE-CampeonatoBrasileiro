@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: tppe.campeonato.AppTest
+Test set: tppe.campeonato.TestTeamClass
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s - in tppe.campeonato.AppTest
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s - in tppe.campeonato.TestTeamClass
