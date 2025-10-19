@@ -1,10 +1,7 @@
 package tppe.campeonato;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Iterator;
-import java.util.Collections;
+ 
 
 public class Competition {
 
@@ -42,35 +39,79 @@ public class Competition {
     
     public ArrayList<Round> scheduleRounds(){
 
+        int n = teams.size();
+        if (n % 2 != 0) {
+            throw new IllegalStateException("Número de times deve ser par para o método do círculo");
+        }
+
         ArrayList<Round> rounds = new ArrayList<>(numRounds);
         for (int i = 0; i < numRounds; i++) {
             rounds.add(new Round(i));
         }
 
         ArrayList<Match> remainingMatches = new ArrayList<>(allMatches);
-        Collections.shuffle(remainingMatches);
 
-        for (Round round : rounds) {
-            Set<Team> usedTeams = new HashSet<>();
-            
-            Iterator<Match> it = remainingMatches.iterator();
+        int roundsPerLeg = n - 1;
 
-            while (it.hasNext()) {
-                Match match = it.next();
-                Team home = match.getHomeTeam();
-                Team away = match.getAwayTeam();
+        ArrayList<Team> rotation = new ArrayList<>(teams);
 
-                if (!usedTeams.contains(home) && !usedTeams.contains(away)) {
-                    round.addMatch(match);
-                    usedTeams.add(home);
-                    usedTeams.add(away);
-                    it.remove(); 
+        for (int r = 0; r < roundsPerLeg; r++) {
+            Round round = rounds.get(r);
+
+            for (int i = 0; i < n / 2; i++) {
+                Team t1 = rotation.get(i);
+                Team t2 = rotation.get(n - 1 - i);
+
+                Team home = (r % 2 == 0) ? t1 : t2;
+                Team away = (r % 2 == 0) ? t2 : t1;
+
+                Match match = getMatch(home, away);
+                if (match == null) {
+                    throw new IllegalStateException("Partida não encontrada: " + home.getName() + " x " + away.getName());
                 }
+
+                round.addMatch(match);
+                remainingMatches.remove(match);
+            }
+
+            if (n > 2) {
+                Team last = rotation.remove(rotation.size() - 1);
+                rotation.add(1, last);
             }
         }
 
-        this.rounds = rounds;
+        rotation = new ArrayList<>(teams);
 
+        for (int r = 0; r < roundsPerLeg; r++) {
+            Round round = rounds.get(roundsPerLeg + r);
+
+            for (int i = 0; i < n / 2; i++) {
+                Team t1 = rotation.get(i);
+                Team t2 = rotation.get(n - 1 - i);
+
+                Team home = (r % 2 == 0) ? t2 : t1;
+                Team away = (r % 2 == 0) ? t1 : t2;
+
+                Match match = getMatch(home, away);
+                if (match == null) {
+                    throw new IllegalStateException("Partida não encontrada: " + home.getName() + " x " + away.getName());
+                }
+
+                round.addMatch(match);
+                remainingMatches.remove(match);
+            }
+
+            if (n > 2) {
+                Team last = rotation.remove(rotation.size() - 1);
+                rotation.add(1, last);
+            }
+        }
+
+        if (!remainingMatches.isEmpty()) {
+            throw new IllegalStateException("Partidas restantes não alocadas: " + remainingMatches.size());
+        }
+
+        this.rounds = rounds;
         return rounds;
     }
 
@@ -186,3 +227,4 @@ public class Competition {
     }
 
 }
+
