@@ -175,8 +175,8 @@ public class Competition {
             c = Integer.compare(t1.getYellowCards(), t2.getYellowCards());
             if (c != 0) return c;
 
-            // Oitavo, ordena por nome (ordem alfabética)
-            return t1.getName().compareToIgnoreCase(t2.getName());
+            // Finalmente, ordena por sorteio (nome do time)
+            return t1.getName().compareTo(t2.getName());
         });
         
         return teams;
@@ -202,16 +202,16 @@ public class Competition {
     }
  
     public ArrayList<Team> getLibertadores(){
-        return new ArrayList<>(getClassification().subList(0,5));
+        return new ArrayList<>(getClassification().subList(0, 6));
     } 
     
     
     public ArrayList<Team> getSulAmericana() {
-        return new ArrayList<>(getClassification().subList(6,11));
+        return new ArrayList<>(getClassification().subList(6, 12));
     }
 
     public ArrayList<Team> getRebaixados() {
-        return new ArrayList<>(getClassification().subList(15,19));
+        return new ArrayList<>(getClassification().subList(16, 20));
     }
     
     

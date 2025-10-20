@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="tppe.campeonato.TestTieBreakerByCards" time="0.004" tests="7" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="tppe.campeonato.TestClassificationRanges" time="0.022" tests="10" errors="0" skipped="0" failures="0">
   <properties>
     <property name="surefire.printSummary" value="true"/>
     <property name="java.specification.version" value="25"/>
@@ -60,11 +60,14 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="TesteTieBreakerByCards[0]" classname="tppe.campeonato.TestTieBreakerByCards" time="0"/>
-  <testcase name="TesteTieBreakerByCards[1]" classname="tppe.campeonato.TestTieBreakerByCards" time="0.002"/>
-  <testcase name="TesteTieBreakerByCards[2]" classname="tppe.campeonato.TestTieBreakerByCards" time="0.001"/>
-  <testcase name="TesteTieBreakerByCards[3]" classname="tppe.campeonato.TestTieBreakerByCards" time="0"/>
-  <testcase name="TesteTieBreakerByCards[4]" classname="tppe.campeonato.TestTieBreakerByCards" time="0"/>
-  <testcase name="TesteTieBreakerByCards[5]" classname="tppe.campeonato.TestTieBreakerByCards" time="0.001"/>
-  <testcase name="TesteTieBreakerByCards[6]" classname="tppe.campeonato.TestTieBreakerByCards" time="0"/>
+  <testcase name="testSulAmericanaRetorna6Times" classname="tppe.campeonato.TestClassificationRanges" time="0.006"/>
+  <testcase name="testLibertadoresSaoOsTopTimes" classname="tppe.campeonato.TestClassificationRanges" time="0.001"/>
+  <testcase name="testLibertadoresRetorna6Times" classname="tppe.campeonato.TestClassificationRanges" time="0.001"/>
+  <testcase name="testRebaixadosSaoOsUltimosTimes" classname="tppe.campeonato.TestClassificationRanges" time="0"/>
+  <testcase name="testRebaixadosRetorna4Times" classname="tppe.campeonato.TestClassificationRanges" time="0.001"/>
+  <testcase name="testComTodosTimesEmpatados" classname="tppe.campeonato.TestClassificationRanges" time="0.001"/>
+  <testcase name="testIndicesCorretosDasSubLists" classname="tppe.campeonato.TestClassificationRanges" time="0"/>
+  <testcase name="testSulAmericanaSaoTimesIntermediarios" classname="tppe.campeonato.TestClassificationRanges" time="0.001"/>
+  <testcase name="testOrdemDosTimesNasListas" classname="tppe.campeonato.TestClassificationRanges" time="0"/>
+  <testcase name="testFaixasNaoSeInterceptam" classname="tppe.campeonato.TestClassificationRanges" time="0.001"/>
 </testsuite>
