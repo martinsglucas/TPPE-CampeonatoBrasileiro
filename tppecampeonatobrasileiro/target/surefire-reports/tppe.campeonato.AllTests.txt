@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: tppe.campeonato.AllTests
 -------------------------------------------------------------------------------
-Tests run: 23, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s - in tppe.campeonato.AllTests
+Tests run: 36, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s - in tppe.campeonato.AllTests
