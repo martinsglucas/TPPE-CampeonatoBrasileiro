@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Competition {
 
     private ArrayList<Team> teams;
-    private ArrayList<Match> allMatches;
+    public ArrayList<Match> allMatches;
     private int numRounds;
     private ArrayList<Round> rounds;
 
@@ -37,83 +37,14 @@ public class Competition {
 
     }
     
-    public ArrayList<Round> scheduleRounds(){
+    public ArrayList<Round> scheduleRounds() {
+    RoundScheduler scheduler =
+            new RoundScheduler(teams, allMatches, numRounds);
 
-        int n = teams.size();
-        if (n % 2 != 0) {
-            throw new IllegalStateException("Número de times deve ser par para o método do círculo");
-        }
+    this.rounds = scheduler.schedule();
+    return rounds;
+}
 
-        ArrayList<Round> rounds = new ArrayList<>(numRounds);
-        for (int i = 0; i < numRounds; i++) {
-            rounds.add(new Round(i));
-        }
-
-        ArrayList<Match> remainingMatches = new ArrayList<>(allMatches);
-
-        int roundsPerLeg = n - 1;
-
-        ArrayList<Team> rotation = new ArrayList<>(teams);
-
-        for (int r = 0; r < roundsPerLeg; r++) {
-            Round round = rounds.get(r);
-
-            for (int i = 0; i < n / 2; i++) {
-                Team t1 = rotation.get(i);
-                Team t2 = rotation.get(n - 1 - i);
-
-                Team home = (r % 2 == 0) ? t1 : t2;
-                Team away = (r % 2 == 0) ? t2 : t1;
-
-                Match match = getMatch(home, away);
-                if (match == null) {
-                    throw new IllegalStateException("Partida não encontrada: " + home.getName() + " x " + away.getName());
-                }
-
-                round.addMatch(match);
-                remainingMatches.remove(match);
-            }
-
-            if (n > 2) {
-                Team last = rotation.remove(rotation.size() - 1);
-                rotation.add(1, last);
-            }
-        }
-
-        rotation = new ArrayList<>(teams);
-
-        for (int r = 0; r < roundsPerLeg; r++) {
-            Round round = rounds.get(roundsPerLeg + r);
-
-            for (int i = 0; i < n / 2; i++) {
-                Team t1 = rotation.get(i);
-                Team t2 = rotation.get(n - 1 - i);
-
-                Team home = (r % 2 == 0) ? t2 : t1;
-                Team away = (r % 2 == 0) ? t1 : t2;
-
-                Match match = getMatch(home, away);
-                if (match == null) {
-                    throw new IllegalStateException("Partida não encontrada: " + home.getName() + " x " + away.getName());
-                }
-
-                round.addMatch(match);
-                remainingMatches.remove(match);
-            }
-
-            if (n > 2) {
-                Team last = rotation.remove(rotation.size() - 1);
-                rotation.add(1, last);
-            }
-        }
-
-        if (!remainingMatches.isEmpty()) {
-            throw new IllegalStateException("Partidas restantes não alocadas: " + remainingMatches.size());
-        }
-
-        this.rounds = rounds;
-        return rounds;
-    }
 
     public ArrayList<Round> getRounds() {
         return rounds;
